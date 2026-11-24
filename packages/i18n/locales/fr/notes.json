@@ -1,0 +1,47 @@
+{
+  "pageTitle": "Notes de séance",
+  "newNote": "Nouvelle note de séance",
+  "drawer": {
+    "newTitle": "Nouvelle note de séance",
+    "editTitle": "Modifier la note",
+    "newDescription": "Remplissez les détails pour créer une nouvelle note.",
+    "editDescription": "Modifiez les détails de la note ci-dessous.",
+    "titleLabel": "Titre",
+    "titlePlaceholder": "ex. Patient M.D. — séance 4 (genou, post-op)",
+    "contentLabel": "Contenu",
+    "contentPlaceholder": "Observations, exercices réalisés, douleur, suite…",
+    "cancel": "Annuler",
+    "save": {
+      "create": "Créer",
+      "update": "Mettre à jour",
+      "saving": "Enregistrement…",
+      "fallbackError": "Échec de l'enregistrement de la note"
+    }
+  },
+  "list": {
+    "loading": "Chargement des notes…"
+  },
+  "detail": {
+    "loading": "Chargement de la note…",
+    "notFound": "Note introuvable",
+    "deleteConfirm": {
+      "title": "Supprimer la note",
+      "message": "Êtes-vous sûr de vouloir supprimer cette note ? Cette action est irréversible."
+    }
+  },
+  "empty": {
+    "title": "Aucune note de séance",
+    "description": "Rédigez votre première note après une séance patient.",
+    "createButton": "Créer une note"
+  },
+  "card": {
+    "edit": "Modifier",
+    "delete": "Supprimer"
+  },
+  "validation": {
+    "titleRequired": "Le titre est requis",
+    "titleMaxLength": "Le titre doit contenir au plus {{max}} caractères",
+    "contentRequired": "Le contenu est requis",
+    "contentMaxLength": "Le contenu doit contenir au plus {{max}} caractères"
+  }
+}

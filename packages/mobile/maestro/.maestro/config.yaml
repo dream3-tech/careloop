@@ -1,0 +1,4 @@
+appId: com.acme.careloop
+flows:
+  - "../flows/*"
+  - "../flows/**/*"

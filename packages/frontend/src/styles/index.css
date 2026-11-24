@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 40 20% 97%;
+    --foreground: 20 14% 10%;
+    --card: 60 100% 100%;
+    --card-foreground: 20 14% 10%;
+    --popover: 60 100% 100%;
+    --popover-foreground: 20 14% 10%;
+    --primary: 244 76% 59%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 40 20% 95%;
+    --secondary-foreground: 20 14% 10%;
+    --muted: 40 20% 95%;
+    --muted-foreground: 33 8% 45%;
+    --accent: 40 20% 95%;
+    --accent-foreground: 20 14% 10%;
+    --destructive: 347 80% 35%;
+    --destructive-foreground: 0 100% 97%;
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+    --border: 30 7% 90%;
+    --input: 30 7% 90%;
+    --ring: 244 76% 59%;
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 24 10% 10%;
+    --foreground: 40 20% 95%;
+    --card: 24 10% 12%;
+    --card-foreground: 40 20% 95%;
+    --popover: 24 10% 12%;
+    --popover-foreground: 40 20% 95%;
+    --primary: 244 76% 65%;
+    --primary-foreground: 24 10% 10%;
+    --secondary: 24 10% 16%;
+    --secondary-foreground: 40 20% 95%;
+    --muted: 24 10% 16%;
+    --muted-foreground: 33 8% 63%;
+    --accent: 24 10% 16%;
+    --accent-foreground: 40 20% 95%;
+    --destructive: 347 70% 45%;
+    --destructive-foreground: 0 100% 97%;
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+    --border: 24 10% 18%;
+    --input: 24 10% 18%;
+    --ring: 244 76% 65%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Karla', system-ui, sans-serif;
+  }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@layer utilities {
+  .animate-fade-up { animation: fade-up 0.45s ease-out both; }
+}

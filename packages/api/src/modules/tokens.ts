@@ -1,0 +1,15 @@
+export const DATABASE_CONNECTION = 'DATABASE_CONNECTION';
+export const USER_REPOSITORY = 'UserRepository';
+export const ROLE_REPOSITORY = 'RoleRepository';
+export const USER_ROLE_REPOSITORY = 'UserRoleRepository';
+export const NOTE_REPOSITORY = 'NoteRepository';
+export const TOKEN_BLACKLIST_REPOSITORY = 'TokenBlacklistRepository';
+export const RATE_LIMIT_REPOSITORY = 'RateLimitRepository';
+export const PASSWORD_HASHER = 'PasswordHasher';
+export const JWT_SERVICE = 'JwtService';
+export const VERIFICATION_TOKEN_REPOSITORY = 'VerificationTokenRepository';
+export const EMAIL_SERVICE = 'EmailService';
+export const TOKEN_GENERATOR = 'TokenGenerator';
+export const VERIFICATION_SERVICE = 'VerificationService';
+export const PASSWORD_RESET_TOKEN_REPOSITORY = 'PasswordResetTokenRepository';
+export const LOGIN_ATTEMPT_REPOSITORY = 'LoginAttemptRepository';

@@ -1,0 +1,52 @@
+{
+  "name": "careloop",
+  "version": "0.0.1",
+  "private": true,
+  "packageManager": "pnpm@9.4.0",
+  "description": "CareLoop — follow-up platform for physiotherapists",
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "test": "turbo test",
+    "test:e2e": "tsx e2e/setup-e2e.ts && playwright test",
+    "test:e2e:api": "tsx e2e/setup-e2e.ts && playwright test --project=api",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:headed": "playwright test --headed",
+    "lint": "turbo lint && tsc --noEmit -p e2e/tsconfig.json",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
+    "dev:mobile": "pnpm --filter @acme/mobile dev",
+    "test:e2e:mobile": "tsx e2e/run-e2e-mobile.ts",
+    "build:mobile": "pnpm --filter @acme/mobile prebuild && pnpm --filter @acme/mobile build:android",
+    "clean": "turbo clean && rm -rf node_modules",
+    "db:seed": "pnpm --filter @acme/database db:seed",
+    "prepare": "husky"
+  },
+  "config": {
+    "mongodbMemoryServer": {
+      "version": "8.2.1",
+      "downloadDir": "./node_modules/.cache/mongodb-memory-server"
+    }
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "pnpm": {
+    "overrides": {
+      "esbuild": ">=0.25.0",
+      "diff": ">=8.0.3",
+      "react": "19.1.0",
+      "react-dom": "19.1.0",
+      "path-to-regexp": ">=8.4.0",
+      "vite": ">=6.4.2"
+    }
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.58.0",
+    "@types/node": "^25.0.10",
+    "husky": "^9.1.7",
+    "prettier": "^3.8.1",
+    "tsx": "^4.21.0",
+    "turbo": "^2.7.5",
+    "typescript": "^5.9.3"
+  }
+}

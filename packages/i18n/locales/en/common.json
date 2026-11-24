@@ -1,0 +1,25 @@
+{
+  "appName": "CareLoop",
+  "tagline": "Follow-up between sessions, made simple",
+  "loading": "Loading...",
+  "error": "Something went wrong",
+  "save": "Save",
+  "cancel": "Cancel",
+  "delete": "Delete",
+  "edit": "Edit",
+  "create": "Create",
+  "back": "Back",
+  "signOut": "Sign Out",
+  "logout": "Logout",
+  "notes": "Session notes",
+  "nav": {
+    "notes": "Session notes"
+  },
+  "dashboard": {
+    "welcome": "Welcome, {{firstName}}!",
+    "greeting": "Welcome back,",
+    "notesTitle": "My session notes",
+    "notesDescription": "Write and review notes from your patient sessions",
+    "viewNotes": "View Notes"
+  }
+}

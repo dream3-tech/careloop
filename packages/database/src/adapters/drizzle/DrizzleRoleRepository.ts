@@ -1,0 +1,53 @@
+import { eq } from 'drizzle-orm';
+import { randomUUID } from 'crypto';
+import type { RoleRepository } from '@acme/domain';
+import type { Role, CreateRoleDTO } from '@acme/domain';
+import type { DatabaseConnection } from '../../connections/sql';
+import { roles } from '../../schema';
+
+export class DrizzleRoleRepository implements RoleRepository {
+  constructor(private readonly db: DatabaseConnection) {}
+
+  async create(dto: CreateRoleDTO): Promise<Role> {
+    const now = new Date();
+    const id = randomUUID();
+    const row = {
+      id,
+      name: dto.name,
+      displayName: dto.displayName,
+      description: dto.description ?? null,
+      isSystem: dto.isSystem ?? false,
+      createdAt: now,
+      updatedAt: now,
+    };
+    await this.db.insert(roles).values(row);
+    return this.mapRow(row);
+  }
+
+  async findById(id: string): Promise<Role | null> {
+    const [row] = await this.db.select().from(roles).where(eq(roles.id, id)).limit(1);
+    return row ? this.mapRow(row) : null;
+  }
+
+  async findByName(name: string): Promise<Role | null> {
+    const [row] = await this.db.select().from(roles).where(eq(roles.name, name)).limit(1);
+    return row ? this.mapRow(row) : null;
+  }
+
+  async findAll(): Promise<Role[]> {
+    const rows = await this.db.select().from(roles);
+    return rows.map((r) => this.mapRow(r));
+  }
+
+  private mapRow(row: any): Role {
+    return {
+      id: row.id,
+      name: row.name,
+      displayName: row.displayName,
+      description: row.description ?? undefined,
+      isSystem: row.isSystem,
+      createdAt: row.createdAt instanceof Date ? row.createdAt : new Date(row.createdAt),
+      updatedAt: row.updatedAt instanceof Date ? row.updatedAt : new Date(row.updatedAt),
+    };
+  }
+}

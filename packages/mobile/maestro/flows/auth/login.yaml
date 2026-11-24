@@ -1,0 +1,18 @@
+appId: com.acme.careloop
+---
+- launchApp:
+    clearState: true
+- assertVisible:
+    id: "login-card"
+- tapOn:
+    id: "login-input-email"
+- inputText: "admin@example.com"
+- tapOn:
+    id: "login-input-password"
+- inputText: "Admin123!"
+- tapOn:
+    id: "login-btn-submit"
+- assertVisible:
+    id: "dashboard-screen"
+- assertVisible:
+    id: "dashboard-text-welcome"

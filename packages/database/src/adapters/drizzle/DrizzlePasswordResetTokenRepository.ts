@@ -1,0 +1,72 @@
+import { eq, and, isNull } from 'drizzle-orm';
+import { randomUUID } from 'crypto';
+import type {
+  PasswordResetTokenRepository,
+  CreatePasswordResetTokenDTO,
+  PasswordResetToken,
+} from '@acme/domain';
+import type { DatabaseConnection } from '../../connections/sql';
+import { passwordResetTokens } from '../../schema';
+
+export class DrizzlePasswordResetTokenRepository implements PasswordResetTokenRepository {
+  constructor(private readonly db: DatabaseConnection) {}
+
+  async create(dto: CreatePasswordResetTokenDTO): Promise<PasswordResetToken> {
+    const now = new Date();
+    const id = randomUUID();
+    const row = {
+      id,
+      userId: dto.userId,
+      tokenHash: dto.tokenHash,
+      expiresAt: dto.expiresAt,
+      usedAt: null,
+      createdAt: now,
+    };
+    await this.db.insert(passwordResetTokens).values(row);
+    return row;
+  }
+
+  async findByTokenHash(tokenHash: string): Promise<PasswordResetToken | null> {
+    const [row] = await this.db
+      .select()
+      .from(passwordResetTokens)
+      .where(eq(passwordResetTokens.tokenHash, tokenHash))
+      .limit(1);
+    return row ? this.mapRow(row) : null;
+  }
+
+  async markUsed(id: string): Promise<PasswordResetToken> {
+    const now = new Date();
+    const [row] = await this.db
+      .update(passwordResetTokens)
+      .set({ usedAt: now })
+      .where(eq(passwordResetTokens.id, id))
+      .returning();
+    if (!row) {
+      throw new Error('Password reset token not found');
+    }
+    return this.mapRow(row);
+  }
+
+  async invalidateByUserId(userId: string): Promise<void> {
+    await this.db
+      .delete(passwordResetTokens)
+      .where(
+        and(
+          eq(passwordResetTokens.userId, userId),
+          isNull(passwordResetTokens.usedAt),
+        ),
+      );
+  }
+
+  private mapRow(row: typeof passwordResetTokens.$inferSelect): PasswordResetToken {
+    return {
+      id: row.id,
+      userId: row.userId,
+      tokenHash: row.tokenHash,
+      expiresAt: row.expiresAt,
+      usedAt: row.usedAt ?? null,
+      createdAt: row.createdAt,
+    };
+  }
+}
