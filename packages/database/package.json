@@ -19,17 +19,17 @@
   "dependencies": {
     "@acme/domain": "workspace:*",
     "@acme/shared": "workspace:*",
-    "@electric-sql/pglite": "^0.5.9",
+    "@electric-sql/pglite": "^0.5.17",
     "bcrypt": "^6.0.0",
-    "drizzle-orm": "^0.45.2",
-    "mongodb": "^7.1.1",
+    "drizzle-orm": "^0.45.4",
+    "mongodb": "^7.9.1",
     "postgres": "^3.4.8"
   },
   "devDependencies": {
     "@types/bcrypt": "^6.0.0",
-    "drizzle-kit": "^0.31.8",
-    "mongodb-memory-server": "^11.0.1",
-    "tsx": "^4.19.0",
+    "drizzle-kit": "^0.31.11",
+    "mongodb-memory-server": "^11.3.0",
+    "tsx": "^4.23.15",
     "typescript": "^5.9.3",
     "vitest": "^4.0.16"
   }
